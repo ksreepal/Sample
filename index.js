@@ -28,9 +28,12 @@ restService.post('/v2/webhook',(req,res)=>{
    
       if(action === 'input.welcome')
       {             
-        response = curl -H "Content-Type: application/json" -X POST -d
+        response = "Hi this is from index.js";
+          
+          /*curl -H "Content-Type: application/json" -X POST -d
         https://www.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm  
                  //Default response from the webhook to show it’s working
+        */
         console.log(response)   
       }
     } 
