@@ -27,14 +27,14 @@ restService.post('/v2/webhook',(req,res)=>{
     var action = req.body.queryResult.action;
    
       if(action === 'input.buyplan')
-      {
-        curl -H "Content-Type: application/json" -X POST -d '{{
+      {             
+        response = curl -H "Content-Type: application/json" -X POST -d '{{
           "name":"India",
           "alpha2_code":"IN",
           "alpha3_code":"IND"
           }}' 
-        https://www.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm        
-        response = "Hi, testing";//Default response from the webhook to show it’s working
+        https://www.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm  
+                 //Default response from the webhook to show it’s working
         console.log(response)   
       }
     } 
