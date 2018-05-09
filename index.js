@@ -30,6 +30,24 @@ restService.post('/v2/webhook',(req,res)=>{
   var action = req.body.queryResult.action;
   
  if(action === 'tell.welcome'){
+   
+   var request = require("request")
+
+    var url = "https://jsonplaceholder.typicode.com/posts/1"
+
+request({
+    url: url,
+    json: true
+}, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+        console.log(body) // Print the json response
+      //alert(body);
+      response = body;
+    }
+})
+
+/*   
+   
   url = "https://jsonplaceholder.typicode.com";
    
 var http = require('http');
@@ -60,11 +78,11 @@ var req = http.request(options, function(res) {
   
   req.write(data);
   req.end();
+   */
    
-   
-   response = msg;
+//   response = body;
    //response = "Hi. Welcome to my Agent.";//Default response from the webhook to show it’s working
-      console.log(response)
+  //    console.log(response)
    
 }else if(action === 'input.promotions'){
   
