@@ -31,24 +31,31 @@ restService.post('/v2/webhook',(req,res)=>{
   
  if(action === 'tell.welcome'){
   url = "https://jsonplaceholder.typicode.com/posts/1";
-   var options = {
-  host: url,
-  port: 80,
-  path: '/resource?id=1',
-  method: 'POST'
+   
+  var options = {
+    host: url,
+    port: 80,
+    path: 'https://jsonplaceholder.typicode.com/posts/1',
+    method: 'POST'
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Content-Length': data.length
+    }
 };
 
 http.request(options, function(res) {
+  var msg = '';
   console.log('STATUS: ' + res.statusCode);
   console.log('HEADERS: ' + JSON.stringify(res.headers));
   res.setEncoding('utf8');
   res.on('data', function (chunk) {
+     msg += chunk;
     console.log('BODY: ' + chunk);
   });
 }).end();
    
    
-   response = chunk;
+   response = msg;
    //response = "Hi. Welcome to my Agent.";//Default response from the webhook to show it’s working
       console.log(response)
    
