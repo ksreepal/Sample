@@ -28,7 +28,13 @@ restService.post('/v2/webhook',(req,res)=>{
    
       if(action === 'input.buyplan')
       {
-        response = "Hi "+req.body.queryResult.parameters.name+", premium plan will cost S$48 , business plan will cost S$64, prime plan will cost S$72 for 2 days of trip. You need to share credit card details to complete plan purchase process. Let me know if you are interested to proceed. You can choose from proceed or cancel.";//Default response from the webhook to show it’s working
+        curl -H "Content-Type: application/json" -X POST -d '{{
+          "name":"India",
+          "alpha2_code":"IN",
+          "alpha3_code":"IND"
+          }}' 
+        https://www.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm        
+        response = "Hi, testing";//Default response from the webhook to show it’s working
         console.log(response)   
       }
     } 
