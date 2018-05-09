@@ -29,7 +29,7 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
- if(action === 'input.welcome'){
+ if(action === 'tell.welcome'){
   
       response = "Hi. Welcome to my Agent.";//Default response from the webhook to show it’s working
       console.log(response)
