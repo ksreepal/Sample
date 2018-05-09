@@ -39,7 +39,7 @@ restService.post('/v2/webhook',(req,res)=>{
         var resultsObj = JSON.parse(body);
         //Just an example of how to access properties:
         console.log(resultsObj.MRData);
-        let msg = "Sample text message from  weebhook.";
+        let msg = 'Sample text message from  weebhook.';
         return res.resultsObj({
           speech: msg,
           displayText: msg,
