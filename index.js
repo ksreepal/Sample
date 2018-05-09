@@ -30,8 +30,26 @@ restService.post('/v2/webhook',(req,res)=>{
   var action = req.body.queryResult.action;
   
  if(action === 'tell.welcome'){
-  
-      response = "Hi. Welcome to my Agent.";//Default response from the webhook to show it’s working
+  url = "https://jsonplaceholder.typicode.com/posts/1";
+   var options = {
+  host: url,
+  port: 80,
+  path: '/resource?id=1',
+  method: 'POST'
+};
+
+http.request(options, function(res) {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+}).end();
+   
+   
+   response = chunk;
+   //response = "Hi. Welcome to my Agent.";//Default response from the webhook to show it’s working
       console.log(response)
    
 }else if(action === 'input.promotions'){
