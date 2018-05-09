@@ -30,12 +30,12 @@ restService.post('/v2/webhook',(req,res)=>{
   var action = req.body.queryResult.action;
   
  if(action === 'tell.welcome'){
-  url = "https://jsonplaceholder.typicode.com/posts/1";
+  url = "https://jsonplaceholder.typicode.com";
    
   var options = {
     host: url,
     port: 80,
-    path: 'https://jsonplaceholder.typicode.com/posts/1',
+    path: '/posts/1',
     method: 'POST'
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
