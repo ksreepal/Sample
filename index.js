@@ -33,18 +33,17 @@ restService.post('/v2/webhook',(req,res)=>{
    
    var request = require("request")
 
-    var url = "https://jsonplaceholder.typicode.com/posts/1"
-
-request({
-    url: url,
-    json: true
-}, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-        console.log(body) // Print the json response
-      //alert(body);
-      response = body;
+    var request = require("request");
+    request.get("http://ergast.com/api/f1/current/last/results.json", function (err, res, body) {
+    if (!err) {
+        var resultsObj = JSON.parse(body);
+        //Just an example of how to access properties:
+        console.log(resultsObj.MRData);
+      
+       response = resultsObj.MRData;
     }
-})
+});
+  
 
 /*   
    
