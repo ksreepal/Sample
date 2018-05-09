@@ -32,6 +32,10 @@ restService.post('/v2/webhook',(req,res)=>{
  if(action === 'tell.welcome'){
   url = "https://jsonplaceholder.typicode.com";
    
+var http = require('http');
+var data = JSON.stringify({
+  'id': '1'
+});
   var options = {
     host: url,
     port: 80,
@@ -43,16 +47,19 @@ restService.post('/v2/webhook',(req,res)=>{
     }
 };
 
-http.request(options, function(res) {
+var req = http.request(options, function(res) {
   var msg = '';
   console.log('STATUS: ' + res.statusCode);
   console.log('HEADERS: ' + JSON.stringify(res.headers));
   res.setEncoding('utf8');
-  res.on('body', function (chunk) {
+  res.on('data', function (chunk) {
      msg += chunk;
     console.log('BODY: ' + chunk);
   });
-}).end();
+});
+  
+  req.write(data);
+  req.end();
    
    
    response = msg;
