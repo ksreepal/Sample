@@ -44,6 +44,7 @@ restService.post('/v2/webhook',(req,res)=>{
           speech: msg,
           displayText: msg,
           source: 'MRData'
+          response  = msg;
         });      
       }
       else
@@ -53,6 +54,7 @@ restService.post('/v2/webhook',(req,res)=>{
           status: {
             code: 400,
             errorType: errorMessage
+            response  = errorMessage;
           }
         });
         
