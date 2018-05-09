@@ -35,13 +35,28 @@ restService.post('/v2/webhook',(req,res)=>{
 
     var request = require("request");
     request.get("http://ergast.com/api/f1/current/last/results.json", function (err, res, body) {
-    if (!err) {
+    if (!err && response.statusCode == 200) {
         var resultsObj = JSON.parse(body);
         //Just an example of how to access properties:
         console.log(resultsObj.MRData);
-      
-       response = resultsObj.MRData;
-    }
+        let msg = "Sample text message from  weebhook.";
+        return res.resultsObj({
+          speech: msg,
+          displayText: msg,
+          source: 'MRData'
+        });      
+      }
+      else
+      {
+        let errorMessage = 'I failed to look up from list.';
+        return res.status(400).json({
+          status: {
+            code: 400,
+            errorType: errorMessage
+          }
+        });
+        
+      }
 });
   
 
