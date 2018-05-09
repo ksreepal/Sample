@@ -1,3 +1,21 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @seema2202
+Sign out
+0
+0 0 seema2202/Sample
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+Sample/index.js
+d76bad8  2 days ago
+@seema2202 seema2202 Update index.js
+@SunilSyal @seema2202
+     
+Executable File  256 lines (223 sloc)  10 KB
 "use strict";
 
 const express = require("express");
@@ -14,31 +32,57 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post('/v2/webhook',(req,res)=>{
+   
  var response = "currently service is unable to process your request"; 
  console.log(req.body)
+ //console.log(req.body.result.action)
   
-  if(!req.body || !req.body.queryResult|| !req.body.queryResult.action)
-  {    
-   response = "Action is missing in request";
-   console.log(response)    
-  }  
-  else
-  {  
-    var action = req.body.queryResult.action;
+  if(!req.body || !req.body.queryResult|| !req.body.queryResult.action){  
    
-      if(action === 'input.welcome')
-      {             
-        response = "Hi this is from index.js";
-          
-          /*curl -H "Content-Type: application/json" -X POST -d
-        https://www.groupkt.com/post/c9b0ccb9/country-and-other-related-rest-webservices.htm  
-                 //Default response from the webhook to show it’s working
-        */
-        console.log(response)   
-      }
-    } 
-}
+   response = "Action is missing in request";
+   console.log(response)
+    //console.log(req.body.result.action)
+    
+}else{
+  
+  var action = req.body.queryResult.action;
+  
+ if(action === 'input.buyplan'){
+  
+      response = "Hi "+req.body.queryResult.parameters.name+", premium plan will cost S$48 , business plan will cost S$64, prime plan will cost S$72 for 2 days of trip. You need to share credit card details to complete plan purchase process. Let me know if you are interested to proceed. You can choose from proceed or cancel.";//Default response from the webhook to show it’s working
+      console.log(response)
+   
+}else if(action === 'input.promotions'){
+  
+      response = "Promo code is travel20, promo offer is 20% off and valid upto 20-04-2018. If you wish to know anything more, please let me know."; 
+      console.log(response)
+  
+}else if(action == 'input.plandetails'){
+  
+     response = "Insured is just myself , Business plan cost is S$20, CoverageType is single , PlanNumber is 7, TravelDestination is asia including australia and new zeeland , Premium plan cost is S$13, TripDuration is 1 day , Prime plan cost is S$22 , Insured is just myself , Business plan cost is S$255, CoverageType is annual , PlanNumber is 8, TravelDestination is asean , Premium plan cost is S$179, TripDuration is 1 year , Prime plan cost is S$281, Insured is group of 6 people , Business plan cost is S$153.9, CoverageType is single , PlanNumber is 10, TravelDestination is worldwide , Premium plan cost is S$114, TripDuration is 1 day , Prime plan cost is S$199.5,Insured is family of 2 adults and 3 children , Business plan cost is S$45.8, CoverageType is single , PlanNumber is 3, TravelDestination is asia including australia and new zeeland , Premium plan cost is S$29.77, TripDuration is 1 day , Prime plan cost is S$50.38 , Insured is couple , Business plan cost is S$32, CoverageType is single , PlanNumber is 2, TravelDestination is asean , Premium is 24, TripDuration is 1 day , Prime is 36, Insured is just myself , Business plan cost is S$382, CoverageType is annual , PlanNumber is 9, TravelDestination is worldwide , Premium plan cost is S$238, TripDuration is 1 year , Prime plan cost is S$428 ,Insured is couple , Business plan cost is S$760, CoverageType is annual , PlanNumber is 4, TravelDestination is worldwide excluding usa , Premium plan cost is S$472, TripDuration is 1 year , Prime plan cost is S$826,Insured is group of 6 people , Business plan cost is S$91.2, CoverageType is single , PlanNumber is 6, TravelDestination is asean , Premium plan cost is S$68.4, TripDuration is 1 day , Prime plan cost is S$102.6,Insured is just myself , Business plan cost is S$16, CoverageType is single , PlanNumber is 1, TravelDestination is asean , Premium plan cost is S$12, TripDuration is 1 day , Prime plan cost is S$18,Insured is couple , Business plan cost is S$54, CoverageType is single , PlanNumber is 5, TravelDestination is worldwide , Premium plan cost is S$40, TripDuration is 1 day , Prime plan cost is S$70.If you wish to know anything more, please let me know."; 
+    console.log(response)
+  
+}else if(action === 'input.planhighlights'){
 
+      response = "currently not available.If you wish to know anything more, please let me know."; 
+       console.log(response) 
+  
+}else if(action === 'input.proceed'){
+    
+    var planType = req.body.queryResult.parameters.planType; 
+    var creditCard = req.body.queryResult.parameters.creditCard;
+    var cvv = req.body.queryResult.parameters.cvv;
+    var mobile = req.body.queryResult.parameters.mobile;
+    
+    response = "Your "+planType+" plan purchase payment details are saved in our system. Please make a note, your mobile number "+mobile+" will be used for future communications. If you wish to know anything more, please let me know.";
+    console.log(response)
+  
+  }else{
+    response = "Alright. Thank you. If you wish to know anything more, please let me know.";
+   console.log(response)
+  }
+    
+  }
 var speech={
          "fulfillmentText":response
         ,"fulfillmentMessages":[
@@ -52,23 +96,10 @@ var speech={
         ]
         ,"source":"webhook-echo-sample"
     } 
+
   return res.json(speech);});
-                 
-/*
-restService.post("/echo", function(req, res) {
-  var speech =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.echoText
-      ? req.body.result.parameters.echoText
-      : "Seems like some problem. Speak again.";
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
-});
-*/
+
+
 restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
@@ -240,3 +271,16 @@ restService.post("/slack-test", function(req, res) {
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
