@@ -13,6 +13,43 @@ restService.use(
 
 restService.use(bodyParser.json());
 
+restService.post('/v2/webhook',(req,res)=>{
+ var response = "currently service is unable to process your request"; 
+ console.log(req.body)
+  
+  if(!req.body || !req.body.queryResult|| !req.body.queryResult.action)
+  {    
+   response = "Action is missing in request";
+   console.log(response)    
+  }  
+  else
+  {  
+    var action = req.body.queryResult.action;
+   
+      if(action === 'input.buyplan')
+      {
+        response = "Hi "+req.body.queryResult.parameters.name+", premium plan will cost S$48 , business plan will cost S$64, prime plan will cost S$72 for 2 days of trip. You need to share credit card details to complete plan purchase process. Let me know if you are interested to proceed. You can choose from proceed or cancel.";//Default response from the webhook to show it’s working
+        console.log(response)   
+      }
+    } 
+}
+
+var speech={
+         "fulfillmentText":response
+        ,"fulfillmentMessages":[
+            {
+                "text": {
+                    "text": [
+                        response
+                    ]
+                }
+            }
+        ]
+        ,"source":"webhook-echo-sample"
+    } 
+  return res.json(speech);});
+                 
+/*
 restService.post("/echo", function(req, res) {
   var speech =
     req.body.result &&
@@ -26,7 +63,7 @@ restService.post("/echo", function(req, res) {
     source: "webhook-echo-sample"
   });
 });
-
+*/
 restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
