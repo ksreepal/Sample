@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
- @seema2202
-Sign out
-0
-0 0 seema2202/Sample
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
-Sample/index.js
-d76bad8  2 days ago
-@seema2202 seema2202 Update index.js
-@SunilSyal @seema2202
-     
-Executable File  256 lines (223 sloc)  10 KB
 "use strict";
 
 const express = require("express");
@@ -271,16 +253,3 @@ restService.post("/slack-test", function(req, res) {
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
 });
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-Press h to open a hovercard with more details.
