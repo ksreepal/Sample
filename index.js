@@ -32,8 +32,18 @@ restService.post('/v2/webhook',(req,res)=>{
  if(action === 'tell.welcome'){
    
    var request = require("request")
-
-    var request = require("request");
+//https://www.googleapis.com/auth/calendar
+   
+   
+  request('https://www.googleapis.com/auth/calendar', function (error, response, body) {
+  console.log('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the HTML for the Google homepage.
+  response = response +"  "+body;
+});
+   
+   /*
+  
     request.get("http://ergast.com/api/f1/current/last/results.json", function (err, res, body) {
     if (!err && response.statusCode == 200) {
         var resultsObj = JSON.parse(body);
@@ -60,7 +70,7 @@ restService.post('/v2/webhook',(req,res)=>{
         
       }
 });
-  
+  */
 
 /*   
    
