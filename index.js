@@ -29,7 +29,7 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
- if(action === 'tell.welcome'){
+ if(action == 'tell.welcome'){
    
    var request = require("request")
 //https://www.googleapis.com/auth/calendar
