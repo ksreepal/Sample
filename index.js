@@ -31,6 +31,9 @@ restService.post('/v2/webhook',(req,res)=>{
  
  if(action == 'tell.welcome'){
    
+   response = "Hi! Welcome to my test Agent.";//Default response from the webhook to show it’s working
+   console.log(response)
+   /*
    var request = require("request")
 //https://www.googleapis.com/auth/calendar
    
@@ -41,7 +44,7 @@ restService.post('/v2/webhook',(req,res)=>{
   console.log('body:', body); // Print the HTML for the Google homepage.
   response = JSON.stringify(response.statusCode) ;
 });
-   
+   */
    /*
   
     request.get("http://ergast.com/api/f1/current/last/results.json", function (err, res, body) {
