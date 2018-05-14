@@ -33,11 +33,12 @@ restService.post('/v2/webhook',(req,res)=>{
    //response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
    //console.log(response)
    //my test code for external API's
-   let url = "https://maps.googleapis.com/maps/api/geocode/json?address=saidabad";
+   let url = "https://maps.googleapis.com/maps/api/geocode/json?address=hyderabad";
     request(url, function (err, response, body) {
-       let weather = JSON.parse(body)
-       let weatherText = ${weather.address_components.long_name};
-       response = weatherText; 
+       let results = JSON.parse(body)
+       let resultsText = ${results.address_components.long_name};
+       //response = resultsText; 
+      response = "Testing with static response..."
     });
       
 }else if(action === 'input.promotions'){
