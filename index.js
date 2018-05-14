@@ -36,7 +36,7 @@ restService.post('/v2/webhook',(req,res)=>{
    let url = "https://maps.googleapis.com/maps/api/geocode/json?address=saidabad";
     request(url, function (err, response, body) {
        let weather = JSON.parse(body)
-       let weatherText = 'It's ${results.address_components.long_name}';
+       let weatherText = ${weather.address_components.long_name};
        response = weatherText; 
     });
       
