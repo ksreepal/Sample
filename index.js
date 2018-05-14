@@ -30,7 +30,7 @@ restService.post('/v2/webhook',(req,res)=>{
   var action = req.body.queryResult.action;
  
  if(action == 'tell.welcome'){
-   //response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
+   response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
    //console.log(response)
    //my test code for external API's
    let url = "https://maps.googleapis.com/maps/api/geocode/json?address=hyderabad";
