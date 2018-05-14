@@ -30,91 +30,16 @@ restService.post('/v2/webhook',(req,res)=>{
   var action = req.body.queryResult.action;
  
  if(action == 'tell.welcome'){
-   
-   //let userUID = restService.getUser().userID;
-   //response = userUID;
-   response = "Hi! Welcome to my test Agent...";//Default response from the webhook to show it’s working
-   console.log(response)
-   /*
-   var request = require("request")
-//https://www.googleapis.com/auth/calendar
-   
-   
-  request('https://www.googleapis.com/auth/calendar', function (error, response, body) {
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
-  response = JSON.stringify(response.statusCode) ;
-});
-   */
-   /*
-  
-    request.get("http://ergast.com/api/f1/current/last/results.json", function (err, res, body) {
-    if (!err && response.statusCode == 200) {
-        var resultsObj = JSON.parse(body);
-        //Just an example of how to access properties:
-        console.log(resultsObj.MRData);
-        let msg = 'Sample text message from  weebhook.';
-        return res.resultsObj({
-          speech: msg,
-          displayText: msg,
-          source: 'MRData'
-          
-        });      
-      }
-      else
-      {
-        let errorMessage = 'I failed to look up from list.';
-        return res.status(400).json({
-          status: {
-            code: 400,
-            errorType: errorMessage
-            
-          }
-        });
-        
-      }
-});
-  */
-
-/*   
-   
-  url = "https://jsonplaceholder.typicode.com";
-   
-var http = require('http');
-var data = JSON.stringify({
-  'id': '1'
-});
-  var options = {
-    host: url,
-    port: 80,
-    path: '/posts/1',
-    method: 'POST'
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Content-Length': data.length
-    }
-};
-
-var req = http.request(options, function(res) {
-  var msg = '';
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ' + JSON.stringify(res.headers));
-  res.setEncoding('utf8');
-  res.on('data', function (chunk) {
-     msg += chunk;
-    console.log('BODY: ' + chunk);
-  });
-});
-  
-  req.write(data);
-  req.end();
-   */
-   
-//   response = body;
-   //response = "Hi. Welcome to my Agent.";//Default response from the webhook to show it’s working
-  //    console.log(response)
-   
+   //response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
+   //console.log(response)
+   //my test code for external API's
+   let url = "https://maps.googleapis.com/maps/api/geocode/json?address=saidabad";
+    request(url, function (err, response, body) {
+       let weather = JSON.parse(body)
+       let weatherText = 'It's ${results.address_components.long_name}';
+       response = weatherText; 
+    });
+   })    
 }else if(action === 'input.promotions'){
   
       response = "Promo code is travel20, promo offer is 20% off and valid upto 20-04-2018. If you wish to know anything more, please let me know."; 
