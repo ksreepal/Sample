@@ -32,8 +32,8 @@ restService.post('/v2/webhook',(req,res)=>{
  if(action == 'tell.welcome'){
    
    let userUID = restService.getUser().userID;
-   response = userUID;
-   //response = "Hi! Welcome to my test Agent.";//Default response from the webhook to show it’s working
+   //response = userUID;
+   response = "Hi! Welcome to my test Agent...";//Default response from the webhook to show it’s working
    console.log(response)
    /*
    var request = require("request")
