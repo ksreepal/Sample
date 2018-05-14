@@ -39,7 +39,7 @@ restService.post('/v2/webhook',(req,res)=>{
        let weatherText = 'It's ${results.address_components.long_name}';
        response = weatherText; 
     });
-   })    
+      
 }else if(action === 'input.promotions'){
   
       response = "Promo code is travel20, promo offer is 20% off and valid upto 20-04-2018. If you wish to know anything more, please let me know."; 
