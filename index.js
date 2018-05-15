@@ -43,8 +43,8 @@ restService.post('/v2/webhook',(req,res)=>{
             req.send("{}");
             req.end(function(res) {
                 if(res.error) {
-                    response.setHeader('Content-Type', 'application/json');
-                    response.send(JSON.stringify({
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({
                         "speech" : "Error. Can you try it again ? ",
                         "displayText" : "Error. Can you try it again ? "
                     }));
@@ -55,8 +55,8 @@ restService.post('/v2/webhook',(req,res)=>{
                         output += result[i].title;
                         output+="\n"
                     }
-                    response.setHeader('Content-Type', 'application/json');
-                    response.send(JSON.stringify({
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({
                         "speech" : output,
                         "displayText" : output
                     })); 
