@@ -30,11 +30,11 @@ restService.post('/v2/webhook',(req,res)=>{
   var action = req.body.queryResult.action;
  
  if(action == 'tell.welcome'){
-   response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
+   //response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
    //console.log(response)
    //my test code for external API's
    
-   var req = unirest("POST", "https://api.themoviedb.org/3/movie/top_rated");
+   var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
                 "page": "1",
                 "language": "en-US",
