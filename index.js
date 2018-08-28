@@ -31,16 +31,12 @@ restService.post('/v2/webhook',(req,res)=>{
  
  if(action === 'input.help'){
    
-  // response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
+   //response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
-   //my test code for external API's
-   
-      
-   
-   //response = httpResponseStatus;
-   
-        var req = new sn_ws.RESTMessageV2();
-        req.setHttpMethod('get');
+   //my test code for external API's   
+    
+       var req = new sn_ws.RESTMessageV2();
+        req.setHttpMethod('post');
         req.setEndpoint('https://api.myjson.com/bins/4j985');
         var res = req.execute();
         var httpResponseStatus = res.getStatusCode();
@@ -48,8 +44,22 @@ restService.post('/v2/webhook',(req,res)=>{
         var parser = new global.JSONParser();
         var parsed = {};
         var httpResponseBody;
+        
+   //  if request is successful then parse the response body
+        if (httpResponseStatus == 200 && httpResponseContentType == 'application/json') {
+            httpResponseBody = res.getBody();
+
+            //  parse JSON string returned from request into a json object
+            parsed = parser.parse(httpResponseBody);
+
+            // iterate over JSON object only printing the id property of JSON objects in results array
+            for (var i = 0; i < parsed.results.length; i++) {
+                gs.print('id: ' + parsed.results[i].id)
+               response = parsed.results[i].id;
+            }        
+        }
    
-    response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
+   
    /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
                 "page": "1",
