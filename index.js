@@ -31,15 +31,25 @@ restService.post('/v2/webhook',(req,res)=>{
  
  if(action === 'input.help'){
    
-   response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
+  // response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
    //my test code for external API's
    
-      // response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
+      
    
    //response = httpResponseStatus;
    
+        var req = new sn_ws.RESTMessageV2();
+        req.setHttpMethod('get');
+        req.setEndpoint('https://api.myjson.com/bins/4j985');
+        var res = req.execute();
+        var httpResponseStatus = res.getStatusCode();
+        var httpResponseContentType = res.getHeader('Content-Type');
+        var parser = new global.JSONParser();
+        var parsed = {};
+        var httpResponseBody;
    
+    response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
                 "page": "1",
