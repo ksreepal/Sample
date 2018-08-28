@@ -29,12 +29,13 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
  
- if(action == 'tell.welcome'){
-   //response = "Hi! Welcome to my test Agent..."; //Default response from the webhook to show it’s working
+ if(action === 'input.help'){
+   
+   response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working
    //console.log(response)
    //my test code for external API's
    
-   var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
+   /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
                 "page": "1",
                 "language": "en-US",
@@ -61,8 +62,8 @@ restService.post('/v2/webhook',(req,res)=>{
                         "displayText" : output
                     })); 
                 }
-});
-   response = output;
+});*/
+   //response = output;
    
    /*let url = "https://maps.googleapis.com/maps/api/geocode/json?address=hyderabad";
     request(url, function (err, response, body) {
