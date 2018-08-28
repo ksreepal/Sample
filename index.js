@@ -58,7 +58,7 @@ restService.post('/v2/webhook',(req,res)=>{
                response = parsed.results[i].id;
             }        
         }
-   
+   response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    
    /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
