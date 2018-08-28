@@ -31,7 +31,7 @@ restService.post('/v2/webhook',(req,res)=>{
  
  if(action === 'input.help'){
    
-   //response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
+   response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
    //my test code for external API's
    try {
@@ -68,7 +68,7 @@ restService.post('/v2/webhook',(req,res)=>{
 }
       // response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    
-   response = httpResponseStatus;
+   //response = httpResponseStatus;
    
    
    /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
