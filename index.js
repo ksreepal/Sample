@@ -34,38 +34,7 @@ restService.post('/v2/webhook',(req,res)=>{
    response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
    //my test code for external API's
-   try {
-        var req = new sn_ws.RESTMessageV2();
-        req.setHttpMethod('get');
-        req.setEndpoint('https://api.myjson.com/bins/4j985');
-        var res = req.execute();
-        var httpResponseStatus = res.getStatusCode();
-        var httpResponseContentType = res.getHeader('Content-Type');
-        var parser = new global.JSONParser();
-        var parsed = {};
-        var httpResponseBody;
-
-        gs.debug("http response status_code: " + httpResponseStatus);
-        gs.debug("http response content-type: " + httpResponseContentType);
-
-        //  if request is successful then parse the response body
-        if (httpResponseStatus == 200 && httpResponseContentType == 'application/json') {
-            httpResponseBody = res.getBody();
-
-            //  parse JSON string returned from request into a json object
-            parsed = parser.parse(httpResponseBody);
-
-            // iterate over JSON object only printing the id property of JSON objects in results array
-            for (var i = 0; i < parsed.results.length; i++) {
-                gs.print('id: ' + parsed.results[i].id)
-               //response = parsed.results[i].id;
-            }        
-        }
-    }
-    catch (ex) {
-        var message = ex.getMessage();
-        gs.debug(message);
-}
+   
       // response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    
    //response = httpResponseStatus;
