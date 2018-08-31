@@ -29,7 +29,12 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
  
- if(action === 'input.help'){
+  
+   if(action === 'second.action'){
+     response = "Your are in Second Intent from Git Hub code..."
+   }
+  
+ else if(action === 'input.help'){
    
    //response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
