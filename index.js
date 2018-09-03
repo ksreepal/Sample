@@ -52,7 +52,8 @@ restService.post('/v2/webhook',(req,res)=>{
         }
     };
      
-     response = "Your are in Second Intent from Git Hub code!"
+     //response = "Your are in Second Intent from Git Hub code!"
+     response = app.getDeviceLocation().address;
      
    }
   
