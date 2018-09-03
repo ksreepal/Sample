@@ -29,15 +29,17 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
-   if(action === 'second.action') {
+   if(action === 'second.action') {    
      
-          const requestPermission = (app) => {
-          app.askForPermissions('To report ', [app.SupportedPermissions.NAME, app.SupportedPermissions.DEVICE_PRECISE_LOCATION]);
-            response = "Testing from github!"
-          };
-       
-    
+      const app = require('actions-on-google').DialogflowApp;
      
+      app.askForPermissions("To show your address", [
+      app.SupportedPermissions.NAME,
+      app.SupportedPermissions.DEVICE_PRECISE_LOCATION
+      ]);
+     
+      response = "Permission: ";
+               
     /* const ThirdIntent = (app) => {
         if (app.isPermissionGranted()) {
             const address = app.getDeviceLocation().address;
@@ -64,7 +66,7 @@ restService.post('/v2/webhook',(req,res)=>{
    //console.log(response)
    //my test code for external API's   
     
-       var req = new sn_ws.RESTMessageV2();
+       //var req = new sn_ws.RESTMessageV2();
         
    response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    
