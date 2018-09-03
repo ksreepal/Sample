@@ -29,42 +29,11 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
-  app.intent('ask_for_permission', (conv) => {
-  conv.ask(new Permission({context, permission}));
-});
-  
-  app.intent('ask_for_permissions_detailed', (conv) => { 
-  const options = {
-    context: 'To address you by name and know your location',
-    // Ask for more than one permission. User can authorize all or none.
-    permissions: ['NAME', 'DEVICE_PRECISE_LOCATION'],
-  };
-  conv.ask(new Permission(options));
-});
- 
-  
-   if(action === 'second.action') {    
-     
+   if(action === 'second.action') {        
      
       response = "Permission: ";
                
-    /* const ThirdIntent = (app) => {
-        if (app.isPermissionGranted()) {
-            const address = app.getDeviceLocation().address;
-            if (address) {            
-                app.tell('You are at ${address}');
-            }
-            else {
-                // Note: Currently, precise locaton only returns lat/lng coordinates on phones and lat/lng coordinates 
-                // and a geocoded address on voice-activated speakers. 
-                // Coarse location only works on voice-activated speakers.
-                app.tell('Sorry, I could not figure out where you are.');
-            }
-        } else {
-            app.tell('Sorry, I could not figure out where you are.');
-        }
-    };*/
-     
+   
     // response = "Your are in Second Intent from Git Hub code!"
     
      
