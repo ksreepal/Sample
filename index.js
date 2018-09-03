@@ -31,11 +31,11 @@ restService.post('/v2/webhook',(req,res)=>{
   
    if(action === 'second.action'){    
     
-     const requestPermission = (app) => {
+     const SecondIntent = (app) => {
      app.askForPermission('To locate you', app.SupportedPermissions.DEVICE_PRECISE_LOCATION);
      };
      
-     const userInfo = (app) => {
+     const ThirdIntent = (app) => {
         if (app.isPermissionGranted()) {
             const address = app.getDeviceLocation().address;
             if (address) {            
@@ -53,7 +53,7 @@ restService.post('/v2/webhook',(req,res)=>{
     };
      
      //response = "Your are in Second Intent from Git Hub code!"
-     response = app.getDeviceLocation().address;
+     response = app.askForPermission('To locate you', app.SupportedPermissions.DEVICE_PRECISE_LOCATION);
      
    }
   
