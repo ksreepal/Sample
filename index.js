@@ -29,11 +29,15 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
-   if(action === 'second.action'){ 
-      const requestPermission = (app) => {
-      app.askForPermissions('To report ', [app.SupportedPermissions.NAME, app.SupportedPermissions.DEVICE_PRECISE_LOCATION]);
-        response = "Testing...";
-    };
+   if(action === 'second.action') {
+     
+     exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+       
+          const requestPermission = (app) => {
+          app.askForPermissions('To report ', [app.SupportedPermissions.NAME, app.SupportedPermissions.DEVICE_PRECISE_LOCATION]);
+          };
+       
+     });
      
     /* const ThirdIntent = (app) => {
         if (app.isPermissionGranted()) {
@@ -55,9 +59,7 @@ restService.post('/v2/webhook',(req,res)=>{
      //response = "Your are in Second Intent from Git Hub code!"
     
      
-   }
-  
- else if(action === 'input.help'){
+   } else if(action === 'input.help'){
    
    //response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
