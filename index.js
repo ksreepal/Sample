@@ -53,7 +53,7 @@ restService.post('/v2/webhook',(req,res)=>{
     };*/
      
      //response = "Your are in Second Intent from Git Hub code!"
-     response = app.askForPermission('To locate you', app.SupportedPermissions.DEVICE_PRECISE_LOCATION);
+    
      
    }
   
