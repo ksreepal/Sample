@@ -29,14 +29,22 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
+  app.intent('ask_for_permission', (conv) => {
+  conv.ask(new Permission({context, permission}));
+});
+  
+  app.intent('ask_for_permissions_detailed', (conv) => { 
+  const options = {
+    context: 'To address you by name and know your location',
+    // Ask for more than one permission. User can authorize all or none.
+    permissions: ['NAME', 'DEVICE_PRECISE_LOCATION'],
+  };
+  conv.ask(new Permission(options));
+});
+ 
+  
    if(action === 'second.action') {    
      
-      const app = require('actions-on-google').DialogflowApp;
-     
-      app.askForPermissions("To show your address", [
-      app.SupportedPermissions.NAME,
-      app.SupportedPermissions.DEVICE_PRECISE_LOCATION
-      ]);
      
       response = "Permission: ";
                
