@@ -1,5 +1,10 @@
 "use strict";
 
+process.env.DEBUG = 'actions-on-google:*';
+const App = require('actions-on-google').DialogflowApp;
+const functions = require('firebase-functions');
+const http = require('https');
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -15,7 +20,8 @@ restService.use(bodyParser.json());
 
 restService.post('/v2/webhook',(req,res)=>{
    
- var response = "currently service is unable to process your request"; 
+ const app = new App({request, response});
+  var response = "currently service is unable to process your request"; 
  console.log(req.body)
  //console.log(req.body.result.action)
   
@@ -23,7 +29,7 @@ restService.post('/v2/webhook',(req,res)=>{
    
    response = "Action is missing in request";
    console.log(response)
-    //console.log(req.body.result.action)
+   //console.log(req.body.result.action)
     
 }else{
   
@@ -31,11 +37,9 @@ restService.post('/v2/webhook',(req,res)=>{
   
    if(action === 'second.action') {        
      
-      response = "Permission: ";
-               
-   
-    // response = "Your are in Second Intent from Git Hub code!"
-    
+     response = "Your are in Second Intent from Git Hub code!"
+     
+     
      
    } else if(action === 'input.help'){
    
