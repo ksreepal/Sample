@@ -29,13 +29,13 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
-   if(action === 'second.action'){    
-    
-     const SecondIntent = (app) => {
-     app.askForPermission('To locate you', app.SupportedPermissions.DEVICE_PRECISE_LOCATION);
-     };
+   if(action === 'second.action'){ 
+      const requestPermission = (app) => {
+      app.askForPermissions('To report ', [app.SupportedPermissions.NAME, app.SupportedPermissions.DEVICE_PRECISE_LOCATION]);
+        response = "Testing...";
+    };
      
-     const ThirdIntent = (app) => {
+    /* const ThirdIntent = (app) => {
         if (app.isPermissionGranted()) {
             const address = app.getDeviceLocation().address;
             if (address) {            
@@ -50,7 +50,7 @@ restService.post('/v2/webhook',(req,res)=>{
         } else {
             app.tell('Sorry, I could not figure out where you are.');
         }
-    };
+    };*/
      
      //response = "Your are in Second Intent from Git Hub code!"
      response = app.askForPermission('To locate you', app.SupportedPermissions.DEVICE_PRECISE_LOCATION);
