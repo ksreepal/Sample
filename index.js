@@ -33,6 +33,7 @@ restService.post('/v2/webhook',(req,res)=>{
      
           const requestPermission = (app) => {
           app.askForPermissions('To report ', [app.SupportedPermissions.NAME, app.SupportedPermissions.DEVICE_PRECISE_LOCATION]);
+            response = "Testing from github!"
           };
        
     
@@ -54,7 +55,7 @@ restService.post('/v2/webhook',(req,res)=>{
         }
     };*/
      
-     response = "Your are in Second Intent from Git Hub code!"
+    // response = "Your are in Second Intent from Git Hub code!"
     
      
    } else if(action === 'input.help'){
