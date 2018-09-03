@@ -29,9 +29,8 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
-   if(action === 'second.action'){
-     
-     //response = "Your are in Second Intent from Git Hub code..."
+   if(action === 'second.action'){    
+    
      const requestPermission = (app) => {
      app.askForPermission('To locate you', app.SupportedPermissions.DEVICE_PRECISE_LOCATION);
      };
