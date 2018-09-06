@@ -1,10 +1,5 @@
 "use strict";
 
-process.env.DEBUG = 'actions-on-google:*';
-const App = require('actions-on-google').DialogflowApp;
-const functions = require('firebase-functions');
-const http = require('https');
-
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -20,8 +15,7 @@ restService.use(bodyParser.json());
 
 restService.post('/v2/webhook',(req,res)=>{
    
- const app = new App({request, response});
-  var response = "currently service is unable to process your request"; 
+ var response = "currently service is unable to process your request"; 
  console.log(req.body)
  //console.log(req.body.result.action)
   
@@ -29,79 +23,30 @@ restService.post('/v2/webhook',(req,res)=>{
    
    response = "Action is missing in request";
    console.log(response)
-   //console.log(req.body.result.action)
+    //console.log(req.body.result.action)
     
 }else{
   
   var action = req.body.queryResult.action;
   
-   if(action === 'second.action') {        
-     
-     response = "Your are in Second Intent from Git Hub code!"
-     
-     
-     
-   } else if(action === 'input.welcome'){
+ if(action === 'input.buyplan'){
+  
+      response = "Hi "+req.body.queryResult.parameters.name+", Premium plan will cost S$48 , Business plan will cost S$64, Prime plan will cost S$72 for 2 days of trip. You need to share credit card details to complete plan purchase process. Let me know if you are interested to proceed. You can choose from proceed or cancel.";//Default response from the webhook to show it’s working
+      console.log(response)
    
-   //response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
-   //console.log(response)
-   //my test code for external API's   
-    
-       //var req = new sn_ws.RESTMessageV2();
-        
-   response = "Hi! Welcome to my helper Intent data from github..."; //Default response from the webhook to show it’s working   
-   
-   /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
-            req.query({
-                "page": "1",
-                "language": "en-US",
-                "api_key": ""
-            });
-            req.send("{}");
-            req.end(function(res) {
-                if(res.error) {
-                    res.setHeader('Content-Type', 'application/json');
-                    res.send(JSON.stringify({
-                        "speech" : "Error. Can you try it again ? ",
-                        "displayText" : "Error. Can you try it again ? "
-                    }));
-                } else if(res.body.results.length > 0) {
-                    let result = res.body.results;
-                    let output = '';
-                    for(let i = 0; i<result.length;i++) {
-                        output += result[i].title;
-                        output+="\n"
-                    }
-                    res.setHeader('Content-Type', 'application/json');
-                    res.send(JSON.stringify({
-                        "speech" : output,
-                        "displayText" : output
-                    })); 
-                }
-});*/
-   //response = output;
-   
-   /*let url = "https://maps.googleapis.com/maps/api/geocode/json?address=hyderabad";
-    request(url, function (err, response, body) {
-       let results = JSON.parse(body)
-       let resultsText = ${results.address_components.long_name};
-       //response = resultsText; 
-      response = "Testing with static response..."
-    });
-      */
 }else if(action === 'input.promotions'){
   
-      response = "Promo code is travel20, promo offer is 20% off and valid upto 20-04-2018. If you wish to know anything more, please let me know."; 
+      response = "Promo code is travel20, promo offer is 20% off and valid upto 23-05-2018. If you wish to know anything more, please let me know."; 
       console.log(response)
   
-}else if(action == 'input.plandetails'){
+}else if(action === 'input.plandetails'){
   
-     response = "Insured is just myself , Business plan cost is S$20, CoverageType is single , PlanNumber is 7, TravelDestination is asia including australia and new zeeland , Premium plan cost is S$13, TripDuration is 1 day , Prime plan cost is S$22 , Insured is just myself , Business plan cost is S$255, CoverageType is annual , PlanNumber is 8, TravelDestination is asean , Premium plan cost is S$179, TripDuration is 1 year , Prime plan cost is S$281, Insured is group of 6 people , Business plan cost is S$153.9, CoverageType is single , PlanNumber is 10, TravelDestination is worldwide , Premium plan cost is S$114, TripDuration is 1 day , Prime plan cost is S$199.5,Insured is family of 2 adults and 3 children , Business plan cost is S$45.8, CoverageType is single , PlanNumber is 3, TravelDestination is asia including australia and new zeeland , Premium plan cost is S$29.77, TripDuration is 1 day , Prime plan cost is S$50.38 , Insured is couple , Business plan cost is S$32, CoverageType is single , PlanNumber is 2, TravelDestination is asean , Premium is 24, TripDuration is 1 day , Prime is 36, Insured is just myself , Business plan cost is S$382, CoverageType is annual , PlanNumber is 9, TravelDestination is worldwide , Premium plan cost is S$238, TripDuration is 1 year , Prime plan cost is S$428 ,Insured is couple , Business plan cost is S$760, CoverageType is annual , PlanNumber is 4, TravelDestination is worldwide excluding usa , Premium plan cost is S$472, TripDuration is 1 year , Prime plan cost is S$826,Insured is group of 6 people , Business plan cost is S$91.2, CoverageType is single , PlanNumber is 6, TravelDestination is asean , Premium plan cost is S$68.4, TripDuration is 1 day , Prime plan cost is S$102.6,Insured is just myself , Business plan cost is S$16, CoverageType is single , PlanNumber is 1, TravelDestination is asean , Premium plan cost is S$12, TripDuration is 1 day , Prime plan cost is S$18,Insured is couple , Business plan cost is S$54, CoverageType is single , PlanNumber is 5, TravelDestination is worldwide , Premium plan cost is S$40, TripDuration is 1 day , Prime plan cost is S$70.If you wish to know anything more, please let me know."; 
+     response = "Insured is just myself, Business plan cost is S$16, CoverageType is single, PlanNumber is 1, TravelDestination is Asean, Premium plan cost is S$12, TripDuration is 1 day, Prime plan cost is S$18.Insured is couple, Business plan cost is S$32, CoverageType is single, PlanNumber is 2, TravelDestination is Asean, Premium is 24, TripDuration is 1 day, Prime is 36.Insured is family of 2 adults and 3 children, Business plan cost is S$45.8, CoverageType is single , PlanNumber is 3, TravelDestination is Asia including Australia and New Zeeland, Premium plan cost is S$29.77, TripDuration is 1 day, Prime plan cost is S$50.38. If you wish to know anything more, please let me know."; 
     console.log(response)
   
 }else if(action === 'input.planhighlights'){
 
-      response = "currently not available.If you wish to know anything more, please let me know."; 
+      response = "Sorry, I wouldn't be able to help you with that right now. You can check again later or log on to www.fwd.com.sg for the details. Let me know if i can help you with anything else?"; 
        console.log(response) 
   
 }else if(action === 'input.proceed'){
@@ -110,11 +55,18 @@ restService.post('/v2/webhook',(req,res)=>{
     var creditCard = req.body.queryResult.parameters.creditCard;
     var cvv = req.body.queryResult.parameters.cvv;
     var mobile = req.body.queryResult.parameters.mobile;
-    
-    response = "Your "+planType+" plan purchase payment details are saved in our system. Please make a note, your mobile number "+mobile+" will be used for future communications. If you wish to know anything more, please let me know.";
-    console.log(response)
+    //var telephone= "'telephone'";
   
-  }else{
+    response = "Your "+planType+" plan purchase payment details are saved in our system. Please make a note, your mobile number 0"+mobile+ " will be used for future communications. If you wish to know anything more, please let me know.";
+  //response ="Your "+planType+" plan purchase payment details are saved in our system. Please make a note, your mobile number  <say-as interpret-as=\"telephone\" format=\"39\">1234567809</say-as>  will be used for future communications. If you wish to know anything more, please let me know.";  
+  console.log(response)  
+  
+  }else if(action === 'input.cancel'){
+    
+       response ="Sure and Thank you. If you need anything else, I'm right here.";
+       console.log(response)
+    }
+  else{
     response = "Alright. Thank you. If you wish to know anything more, please let me know.";
    console.log(response)
   }
