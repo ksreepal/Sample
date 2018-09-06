@@ -41,7 +41,7 @@ restService.post('/v2/webhook',(req,res)=>{
      
      
      
-   } else if(action === 'input.help'){
+   } else if(action === 'input.welcome'){
    
    //response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
    //console.log(response)
@@ -49,7 +49,7 @@ restService.post('/v2/webhook',(req,res)=>{
     
        //var req = new sn_ws.RESTMessageV2();
         
-   response = "Hi! Welcome to my help data from github..."; //Default response from the webhook to show it’s working   
+   response = "Hi! Welcome to my helper Intent data from github..."; //Default response from the webhook to show it’s working   
    
    /*var req = unirest("GET", "https://api.themoviedb.org/3/movie/top_rated");
             req.query({
