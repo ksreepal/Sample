@@ -29,11 +29,7 @@ restService.post('/v2/webhook',(req,res)=>{
   
   var action = req.body.queryResult.action;
   
- if(action === 'input.welcome'){
-      response = "Hi welcome to test agent of helper intents...!";
-      console.log(response)   
-   
- }else if(action === 'input.buyplan'){
+ if(action === 'input.buyplan'){
   
       response = "Hi "+req.body.queryResult.parameters.name+", Premium plan will cost S$48 , Business plan will cost S$64, Prime plan will cost S$72 for 2 days of trip. You need to share credit card details to complete plan purchase process. Let me know if you are interested to proceed. You can choose from proceed or cancel.";//Default response from the webhook to show it’s working
       console.log(response)
